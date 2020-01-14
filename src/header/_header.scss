@@ -1,0 +1,158 @@
+// *** Header Styles ***/ 
+header {
+    @include object(100vw, 100vh, $header-bg);
+    display: flex;
+}
+
+
+/*** Navigation Styles ***/
+
+nav {
+    @include object(100vw, 160px, $nav-bg);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: fixed;
+    z-index: 10;
+    transition: all 0.3s;
+    &.navShadow {
+        box-shadow: 0 4px 30px -5px rgba(#000, 0.2);
+        height: 100px;
+        #word-mark {
+            opacity: 0;
+        }
+    }
+}
+
+#brand,
+#menu,
+ul {
+    display: flex;
+    align-items: center;
+}
+
+#brand {
+    padding-left: 40px;
+}
+
+#logo {
+    @include object(55px, 55px, $accent);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#word-mark {
+    border-radius: 90px;
+    margin-left: 20px;
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+#index-section {
+    width: 100%;
+    padding-top: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+/*** Menu Styles ***/
+
+#menu {
+    justify-content: flex-end;
+    padding-right: 40px;
+}
+
+li {
+    list-style: none;
+    margin: auto;
+    a {
+        display: block;
+        white-space: nowrap;
+        border-radius: 90px;
+        text-transform: uppercase;
+        padding-left: 10px;
+    }
+}
+
+#menu-toggle {
+    @include center;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    &:hover .bar {
+        width: 25px;
+    }
+    &.closeMenu {
+        .bar {
+            width: 25px;
+            &:first-child {
+                transform: translateY(7px) rotate(45deg);
+            }
+            &:nth-child(2) {
+                transform: scale(0);
+            }
+            &:last-child {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+    }
+}
+
+.bar {
+    @include object(25px, 2px, $accent);
+    transition: 0.3s ease-in-out;
+    &:nth-child(2) {
+        width: 20px;
+        margin: 5px 0;
+    }
+    &:last-child {
+        width: 15px;
+    }
+}
+
+
+/*** Responsive Menu For Smaller Device ***/
+
+@media screen and (max-width:767px) {
+    #menu-toggle {
+        display: flex;
+        justify-content: center;
+    }
+    ul {
+        display: inline-block;
+        @include object(100vw, 0, $aqua);
+        @include transPos(160px, null, null, null, null, null);
+        box-shadow: 0 5px 30px -4px rgba(#000, 0.2);
+        transition: all 0.3s;
+        &.showMenu {
+            height: 250px;
+            li {
+                height: 60px;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+    li {
+        @include object(50%, 80px, null);
+        float: left;
+        padding-left: 40px;
+        opacity: 0;
+        visibility: hidden;
+        margin-left: 0;
+        transition: all 0.3s 0.1s;
+        &:first-child,
+        &:nth-child(2) {
+            margin-top: 30px;
+        }
+    }
+    #head-line {
+        transform: scale(0.8);
+    }
+}

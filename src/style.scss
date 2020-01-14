@@ -1,0 +1,56 @@
+/*** Mixins & Default Styles ***/
+
+@mixin object($width, $height, $bg) {
+    width: $width;
+    height: $height;
+    background: $bg;
+}
+
+@mixin transPos($top, $right, $bottom, $left, $transX, $transY) {
+    position: absolute;
+    top: $top;
+    left: $left;
+    right: $right;
+    bottom: $bottom;
+    transform: translate($transX, $transY);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+/*** Color Variables ***/
+
+$header-bg: #5661F2;
+$nav-bg: #46B2F0;
+$pink: #FA6C98;
+$aqua: #79EDFC;
+$accent: #fff;
+
+/*** Centering Hack ***/
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@import"header/header";
+@import"content/content";
+@import"footer/footer";
+// Phone icon
+#phone {
+    position: fixed;
+    right: 2vw;
+    bottom: 2vh;
+    font-size: 30px;
+    color: #fff;
+}
